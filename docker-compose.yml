@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434" # listens on 11434 port
+    environment:
+      # Define any environment variables needed for the ollama service here
+      - EXAMPLE_VAR=example_value
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017" # Default MongoDB port
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root # Change
+      - MONGO_INITDB_ROOT_PASSWORD=example # Change
+    volumes:
+      - mongo-data:/data/db # here is the mongo Db Data
+
+volumes:
+  mongo-data: # where the mongo data is stored
+
